@@ -8,12 +8,17 @@ class PostsIndex extends Component {
   }
 
   render() {
+    console.log(this.props.posts);
     return(
       <div>
         Post Index
       </div>
     );
   }
+}
+
+function mapStateToProps(state) {
+  return { posts: state.posts };
 }
 
 export default connect(null, { fetchPosts }) (PostsIndex);
