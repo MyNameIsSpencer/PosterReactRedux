@@ -1,0 +1,14 @@
+renderTitleField(field) {
+  render(
+    <div>
+      <input
+        {...field.input}
+        {/* ^ up there is easier way of saying
+          onChange={field.input.onChange}
+          onFocus={field.input.onFocus}
+          onBlur={field.input.onBlur}
+          */}
+      />
+    </div>
+  )
+}
