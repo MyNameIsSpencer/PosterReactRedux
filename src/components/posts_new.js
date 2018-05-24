@@ -11,6 +11,7 @@ class PostsNew extends Component {
           type="text"
           {...field.input}
         />
+        {field.meta.error}
       </div>
     );
   }
@@ -32,15 +33,38 @@ class PostsNew extends Component {
         />
         <Field
           label="Post Content"
-          name=""
+          name="content"
           component={this.renderField}
           />
+        <button type="submit" className="btn btn-primary"> Submit </button>
       </form>
     );
   }
 }
 
+function validate(values) {
+  // console.log(values);  -->  {title: 'asdf', categories: 'fasd', content: 'ghjkl' }
+  const errors = {};
+
+  // Validates input from values
+  
+  if (!values.title) {
+    errors.title = "Enter a title!";
+  }
+  if (!values.categories) {
+    errors.categories = "Enter categories!";
+  }
+  if (!values.content) {
+    errors.content = "Enter content!";
+  }
+
+  // if errors is empty, Redux assumes form is fine,
+  // if errors has any properties, redux assumes invalid
+  return errors;
+}
+
 export default reduxForm({
+  validate,
   //  value V  just has to be something unique
   form: 'PostsNewForm'
 })(PostsNew);
